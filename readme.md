@@ -52,6 +52,3 @@ MIT © [legodude17](https://github.com/)
 
 [gemnasium-badge]: http://img.shields.io/gemnasium//node-command.svg?style=flat-square
 [gemnasium-link]: https://gemnasium.com//node-command
-
-[coveralls-badge]: http://img.shields.io/coveralls//node-command.svg?style=flat-square
-[coveralls-link]: https://coveralls.io/r//node-command

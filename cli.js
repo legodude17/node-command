@@ -4,36 +4,36 @@
 var pkg = require('./package.json');
 var nodeCommand = require('./');
 var argv = process.argv.slice(2);
-
+var minimist = require('minimist');
+argv = minimist(argv, {
+  alias: {
+    'h': 'help',
+    'v': 'version',
+    's': 'silent',
+    'e': 'error-log'
+  }
+});
 function help() {
   console.log([
     '',
-      '  ' + pkg.description,
+    '  ' + pkg.description,
     '',
     '  Example',
-    '    node-command ',
+    '    nand ',
     ''
   ].join('\n'));
 }
 
-function isOn(a) {
-  return argv.includes('--' + a);
-}
-
-if (argv.indexOf('--help') !== -1) {
+if (argv.help) {
   help();
   return;
 }
 
-if (argv.indexOf('--version') !== -1) {
+if (argv.version) {
   console.log(pkg.version);
   return;
 }
-
-
-nodeCommand(argv.shift(), argv, {
-  silent: isOn('silent'),
-  logError: isOn('error-log')
-}, function(){
-
-});
+nodeCommand(argv._.shift(), argv._, {
+  silent: argv.silent,
+  logError: argv['error-log']
+}, process.exit);

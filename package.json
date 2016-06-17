@@ -4,14 +4,13 @@
   "description": "A command runner with node support.",
   "main": "index.js",
   "scripts": {
-    "test": "mocha",
-    "coverage": "istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec"
+    "test": "mocha test.js"
   },
   "engines": {
     "node": ">=0.10.0"
   },
   "bin": {
-    "node-command": "cli.js"
+    "nand": "cli.js"
   },
   "files": [
     "index.js",
@@ -21,19 +20,21 @@
     "type": "git",
     "url": "https://github.com//node-command"
   },
-  "author": "legodude17 <legodudejb@gmail.com> (https://github.com/)",
+  "author": "legodude17 <legodudejb@gmail.com> (https://github.com/legodude17)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com//node-command/issues"
+    "url": "https://github.com/node-command/issues"
   },
-  "homepage": "https://github.com//node-command",
+  "homepage": "https://github.com/node-command",
   "dependencies": {
     "async": "^2.0.0-rc.6",
     "asynquence": "^0.9.0",
-    "is-executable": "^1.0.1"
+    "common-callback-names": "^1.0.2",
+    "function-args": "^1.0.2",
+    "is-executable": "^1.0.1",
+    "minimist": "^1.2.0"
   },
   "devDependencies": {
-    "mocha": "2.2.5",
-    "mocha-lcov-reporter": "0.0.2"
+    "mocha": "2.2.5"
   }
 }
