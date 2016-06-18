@@ -19,11 +19,33 @@ function call(fn, args, cb, context) {
       finalArgs.push(args.shift());
     }
   });
-  fn.apply(context || Object.create(null), finalArgs);
+  try {
+    fn.apply(context || Object.create(null), finalArgs);
+  } catch (e) {cb(); }
 }
 module.exports = function(file, args, options, cb){
   options = options || {};
   ASQ(function (done) {
+    isExe(file).then(function (res) {
+      if (res) {
+        execute(file, args, function (error, stdout, stderr) {
+            if (error && options.logErrors) {
+              console.error(error);
+            }
+            if (!options.silent) {
+              stdout.length && console.log(stdout);
+              stderr.length && console.error(stderr);
+            }
+            done();
+          });
+      } else {
+        done();
+      }
+    }, done.fail);
+  }).then(function (done, msg) {
+    if (msg) {
+      return done(msg);
+    }
     var good = false;
     var arr = process.env.PATH.split(path.delimiter);
     async.forEachOf(arr.concat('--color'), function (v, i, cb) {
@@ -43,7 +65,7 @@ module.exports = function(file, args, options, cb){
         } else {
           cb();
         }
-      }, function (err) {done.fail(err); });
+      }, done.fail);
     }, function (err) {
       if (err) {
         return done.fail(err);
@@ -74,11 +96,6 @@ module.exports = function(file, args, options, cb){
       done(false);
     }
   }).then(function (done, msg) {
-    if (msg) {
-      console.log('Good');
-    } else {
-      console.error('Boo :(');
-    }
-    cb(null, true);
+    cb(null, msg);
   });
 };
