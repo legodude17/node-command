@@ -12,6 +12,9 @@
   "bin": {
     "nand": "./cli.js"
   },
+  "files": [
+    "./cli.js"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/node-command"
