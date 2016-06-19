@@ -13,42 +13,45 @@ $ npm install --save node-command
 ```js
 var nodeCommand = require('node-command');
 
-nodeCommand()
-
+nodeCommand(
+  name, // The name to try
+  args, // Arguments to pass
+  options, // The options
+  cb // Callback
+);
 ```
-
-
+### Options
+#### Silent
+Type: `boolean`  
+Default: `false`
+Suppress all messages.
+#### Error log
+Type: `boolean`
+Default: `false`
+Show error messages from `child_process.execFile`.
 ## CLI
 
 ```sh
-$ npm install --global node-command
+$ npm install -g node-command
 ```
 
 ```sh
-$ node-command --help
+$ nand --help
 
+  Usage: nand [options] -- <file> [args...]
+  
+  Options:
+    -e | --error-log     Log errors from child processes
+    -s | --silent        Suppress all messages.
   Example
-    node-command
-    
+    nand -e -- node example.js
 ```
-
-
-## API
-
-#### Option
-
-Type: `String`  
-Default: `undefined`
-
-Description of the option.
-
-
 ## License
 
-MIT © [legodude17](https://github.com/)
+MIT © [legodude17](https://github.com/legodude17)
 
-[travis-badge]: http://img.shields.io/travis//node-command.svg?style=flat-square
-[travis-link]: https://travis-ci.org//node-command
+[travis-badge]: http://img.shields.io/travis/node-command.svg?style=flat-square
+[travis-link]: https://travis-ci.org/node-command
 
-[gemnasium-badge]: http://img.shields.io/gemnasium//node-command.svg?style=flat-square
-[gemnasium-link]: https://gemnasium.com//node-command
+[gemnasium-badge]: http://img.shields.io/gemnasium/node-command.svg?style=flat-square
+[gemnasium-link]: https://gemnasium.com/node-command

@@ -12,13 +12,9 @@
   "bin": {
     "nand": "./cli.js"
   },
-  "files": [
-    "index.js",
-    "cli.js"
-  ],
   "repository": {
     "type": "git",
-    "url": "https://github.com//node-command"
+    "url": "https://github.com/node-command"
   },
   "author": "legodude17 <legodudejb@gmail.com> (https://github.com/legodude17)",
   "license": "MIT",
