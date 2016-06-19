@@ -34,14 +34,30 @@ module.exports = function(file, args, options, cb){
             }
             if (!options.silent) {
               stdout.length && console.log(stdout);
-              stderr.length && console.error(stderr);
+              stderr.length && console.error(stderr.length);
             }
-            done();
+            done(true);
           });
       } else {
         done();
       }
     }, done.fail);
+  }).then(function (done, msg) {
+    if (msg) {
+      done(msg);
+    }
+    isExe(path.join(process.cwd(), 'node_modules', '.bin', file), function (res) {
+      execute(file, args, function (error, stdout, stderr) {
+        if (error && options.logErrors) {
+          console.error(error);
+        }
+        if (!options.silent) {
+          stdout.length && console.log(stdout);
+          stderr.length && console.error(stderr.length);
+        }
+        done(true);
+      });
+    });
   }).then(function (done, msg) {
     if (msg) {
       return done(msg);

@@ -2,7 +2,7 @@
   "name": "node-command",
   "version": "1.1.0",
   "description": "A command runner with node support.",
-  "main": "index.js",
+  "main": "./index.js",
   "scripts": {
     "test": "mocha test.js"
   },
@@ -10,7 +10,7 @@
     "node": ">=0.10.0"
   },
   "bin": {
-    "nand": "cli.js"
+    "nand": "./cli.js"
   },
   "files": [
     "index.js",
