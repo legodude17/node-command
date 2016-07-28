@@ -64,7 +64,7 @@ module.exports = function(file, args, options, cb){
     }
     var good = false;
     var arr = process.env.PATH.split(path.delimiter);
-    async.forEachOf(arr.concat('--color'), function (v, i, cb) {
+    async.forEachOf(arr, function (v, i, cb) {
       isExe(path.join(v, file)).then(function (res) {
         if (res) {
           execute(path.join(v, file), args, function (error, stdout, stderr) {
